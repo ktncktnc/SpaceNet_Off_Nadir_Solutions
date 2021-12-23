@@ -155,14 +155,22 @@ class TestDenseData(Dataset):
         except Exception as e:
             print(os.path.join(self.data_path, self.names[idx]))
             raise e
+
         if np.shape(img)[0] == 4:
             img = np.moveaxis(img, 0, -1)
+            
         img = stretch_8bit(img)
         mask = []
         nadir = nadirs['all'].index(self.names[idx].split("/")[-3])
+
         angle = np.zeros((1, 1, 27))
         angle[0, 0, nadir] = 1
-        sample = {"img": img, "mask": mask, 'img_name': self.names[idx], "angle": angle}
+
+        sample = {"img": img, "mask": mask}
+
         if self.transform:
             sample = self.transform(sample)
+
+        sample["angle"] = angle
+        sample['img_name'] = self.names[idx]
         return sample
