@@ -160,15 +160,16 @@ class TestDenseData(Dataset):
             img = np.moveaxis(img, 0, -1)
             
         img = stretch_8bit(img)
-        mask = []
         nadir = nadirs['all'].index(self.names[idx].split("/")[-3])
 
         angle = np.zeros((1, 1, 27))
         angle[0, 0, nadir] = 1
 
         if self.transform:
-            sample = self.transform(image = img)
+            img = self.transform(image = img)
 
+        sample = {}
+        sample["img"] = img
         sample["angle"] = angle
         sample['img_name'] = self.names[idx]
         return sample
