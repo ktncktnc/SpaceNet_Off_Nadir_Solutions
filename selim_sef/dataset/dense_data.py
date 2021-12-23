@@ -3,7 +3,7 @@ import os
 import cv2
 import numpy as np
 import pandas as pd
-from skimage.external import tifffile
+import tifffile
 
 cv2.setNumThreads(0)
 from torch.utils.data import Dataset

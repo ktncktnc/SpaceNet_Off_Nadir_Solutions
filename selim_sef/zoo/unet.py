@@ -19,7 +19,7 @@ encoder_params = {
         'init_op': dpn92,
         'url': 'http://data.lip6.fr/cadene/pretrainedmodels/dpn92_extra-b040e4a9b.pth'},
     'resnet34':
-        {'filters': [64, 64, 128, 256, 512 + 27],
+        {'filters': [64, 64, 128, 256, 512],
          'decoder_filters': [64, 128, 256, 512],
          'last_upsample': 64,
          'init_op': partial(resnet.resnet34, in_channels=4),
