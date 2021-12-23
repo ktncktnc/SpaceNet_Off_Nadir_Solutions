@@ -167,7 +167,7 @@ class TestDenseData(Dataset):
         angle[0, 0, nadir] = 1
 
         if self.transform:
-            sample = self.transform(image = img, mask = mask)
+            sample = self.transform(image = img)
 
         sample["angle"] = angle
         sample['img_name'] = self.names[idx]
